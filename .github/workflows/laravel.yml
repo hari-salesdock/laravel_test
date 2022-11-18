@@ -8,7 +8,6 @@ on:
 
 jobs:
   laravel-tests:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -32,4 +31,12 @@ jobs:
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
-      run: vendor/bin/phpunit
+      run: vendor/bin/phpunit --coverage-clover=coverage.xml
+
+    - name: Upload to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage.xml
+          verbose: true
+
