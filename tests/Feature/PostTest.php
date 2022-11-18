@@ -49,7 +49,6 @@ class PostTest extends TestCase
 
     private function getPayload(): array
     {
-
         return [
             'title' => $this->faker->title,
             'slug' => $this->faker->unique()->slug,
